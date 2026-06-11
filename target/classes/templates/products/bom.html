@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Product BOM')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container">
+    <div class="card">
+        <h1>Product BOM</h1>
+        <p><strong th:text="${product.productCode}">PRD-001</strong> - <span th:text="${product.productName}">Demo Product</span></p>
+        <p class="muted">BOM means the raw materials/components required to manufacture one unit of this product. This is not raw material stock count.</p>
+    </div>
+
+    <div th:if="${success}" class="alert success" th:text="${success}"></div>
+
+    <div class="card">
+        <h2>Add BOM Item</h2>
+        <form th:action="@{/products/{id}/bom(id=${product.id})}" th:object="${bomItem}" method="post">
+            <input type="hidden" th:field="*{productCode}">
+            <div class="form-row">
+                <label>Raw Material</label>
+                <select th:field="*{materialCode}">
+                    <option value="">-- Select Material --</option>
+                    <option th:each="m : ${materials}" th:value="${m.materialCode}" th:text="${m.materialCode + ' - ' + m.materialName}"></option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label>Quantity Per Unit</label>
+                <input type="number" step="0.0001" th:field="*{quantityPerUnit}" placeholder="1">
+            </div>
+            <div class="actions">
+                <button class="btn primary" type="submit">Add BOM Item</button>
+                <a class="btn" th:href="@{/products}">Back</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>BOM Items</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Material Code</th>
+                <th>Material Name</th>
+                <th>Unit</th>
+                <th>Qty Per Unit</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(bomItems)}">
+                <td colspan="5" class="muted">No BOM items configured for this product.</td>
+            </tr>
+            <tr th:each="item : ${bomItems}">
+                <td th:text="${item.material.materialCode}">MAT-001</td>
+                <td th:text="${item.material.materialName}">Material</td>
+                <td th:text="${item.material.unitOfMeasure}">PCS</td>
+                <td th:text="${item.quantityPerUnit}">2</td>
+                <td>
+                    <form th:action="@{/products/{productId}/bom/{bomItemId}/delete(productId=${product.id}, bomItemId=${item.id})}" method="post" onsubmit="return confirm('Delete this BOM item?');">
+                        <button class="btn danger small" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

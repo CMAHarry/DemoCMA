@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container">
+    <div class="card">
+        <h1 th:text="${pageTitle}">Material Form</h1>
+        <form th:action="${formAction}" th:object="${material}" method="post">
+            <div class="form-row">
+                <label>Material Code</label>
+                <input type="text" th:field="*{materialCode}" placeholder="MAT-001">
+                <div class="error" th:if="${#fields.hasErrors('materialCode')}" th:errors="*{materialCode}"></div>
+            </div>
+            <div class="form-row">
+                <label>Material Name</label>
+                <input type="text" th:field="*{materialName}" placeholder="Aluminium Casing">
+                <div class="error" th:if="${#fields.hasErrors('materialName')}" th:errors="*{materialName}"></div>
+            </div>
+            <div class="form-row">
+                <label>Unit of Measure</label>
+                <input type="text" th:field="*{unitOfMeasure}" placeholder="PCS / KG / METER">
+            </div>
+            <div class="form-row">
+                <label>
+                    <input type="checkbox" th:field="*{active}"> Active
+                </label>
+            </div>
+            <div class="actions">
+                <button class="btn primary" type="submit">Save</button>
+                <a class="btn" th:href="@{/materials}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

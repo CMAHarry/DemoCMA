@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Work Orders')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container">
+    <div class="card">
+        <h1>Work Orders</h1>
+        <p class="muted">Work orders are normally created by ISM 2 through the integration API.</p>
+    </div>
+
+    <div th:if="${success}" class="alert success" th:text="${success}"></div>
+
+    <div class="card">
+        <table>
+            <thead>
+            <tr>
+                <th>Work Order No</th>
+                <th>Goods Request No</th>
+                <th>Order No</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(workOrders)}">
+                <td colspan="7" class="muted">No work orders yet. Create one from Swagger.</td>
+            </tr>
+            <tr th:each="wo : ${workOrders}">
+                <td th:text="${wo.workOrderNo}">WO-0001</td>
+                <td th:text="${wo.goodsRequestNo}">GR-0001</td>
+                <td th:text="${wo.orderNo}">ORD-0001</td>
+                <td th:text="${wo.product.productCode + ' - ' + wo.product.productName}">PRD-001</td>
+                <td th:text="${wo.quantity}">5</td>
+                <td><span class="status" th:text="${wo.status}">RECEIVED</span></td>
+                <td><a class="btn small" th:href="@{/work-orders/{id}(id=${wo.workOrderNo})}">View</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>
