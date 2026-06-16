@@ -1,0 +1,13 @@
+$kind: collection
+name: DemoCMA Manufacturing API
+variables:
+  - key: baseUrl
+    value: 'http://localhost:8080'
+  - key: materialId
+    value: '1'
+  - key: productId
+    value: '1'
+  - key: productCode
+    value: 'PROD-001'
+  - key: workOrderNo
+    value: 'WO-2024-001'

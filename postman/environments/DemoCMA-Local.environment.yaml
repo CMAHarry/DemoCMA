@@ -1,0 +1,17 @@
+name: DemoCMA Local
+values:
+  - key: baseUrl
+    value: 'http://localhost:8083'
+    enabled: true
+  - key: productId
+    value: '1'
+    enabled: true
+  - key: materialId
+    value: '1'
+    enabled: true
+  - key: productCode
+    value: 'PROD-001'
+    enabled: true
+  - key: workOrderNo
+    value: 'WO-001'
+    enabled: true

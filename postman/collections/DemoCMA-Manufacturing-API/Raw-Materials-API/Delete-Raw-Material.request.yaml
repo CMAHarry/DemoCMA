@@ -1,0 +1,6 @@
+$kind: http-request
+name: Delete Raw Material
+method: DELETE
+url: '{{baseUrl}}/api/materials/{{materialId}}'
+order: 5000
+examples: './.resources/Delete-Raw-Material.resources/examples'

@@ -1,0 +1,17 @@
+$kind: http-request
+name: Add BOM Item
+method: POST
+url: '{{baseUrl}}/api/products/bom-items'
+order: 7000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "productCode": "PROD-001",
+      "materialCode": "MAT-001",
+      "quantityPerUnit": 2.5
+    }
+examples: './.resources/Add-BOM-Item.resources/examples'

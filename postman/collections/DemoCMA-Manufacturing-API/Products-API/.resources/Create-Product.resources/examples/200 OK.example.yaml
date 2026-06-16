@@ -1,0 +1,39 @@
+$kind: http-example
+name: '200 OK'
+request:
+  url: '{{baseUrl}}/api/products'
+  method: POST
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "productCode": "PROD-001",
+        "productName": "Assembled Frame",
+        "description": "Main structural frame assembly",
+        "active": true
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "message": "Product created",
+        "data": {
+          "id": 1,
+          "productCode": "PROD-001",
+          "productName": "Assembled Frame",
+          "description": "Main structural frame assembly",
+          "active": true,
+          "createdAt": "2024-01-15T08:00:00",
+          "updatedAt": "2024-01-15T08:00:00"
+        }
+      }

@@ -1,0 +1,38 @@
+$kind: http-example
+name: '200 OK'
+request:
+  url: '{{baseUrl}}/api/products'
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "message": "Products retrieved",
+        "data": [
+          {
+            "id": 1,
+            "productCode": "PROD-001",
+            "productName": "Assembled Frame",
+            "description": "Main structural frame assembly",
+            "active": true,
+            "createdAt": "2024-01-15T08:00:00",
+            "updatedAt": "2024-01-15T08:00:00"
+          },
+          {
+            "id": 2,
+            "productCode": "PROD-002",
+            "productName": "Drive Shaft Assembly",
+            "description": "Rear drive shaft with bearings",
+            "active": true,
+            "createdAt": "2024-01-15T08:10:00",
+            "updatedAt": "2024-01-15T08:10:00"
+          }
+        ]
+      }

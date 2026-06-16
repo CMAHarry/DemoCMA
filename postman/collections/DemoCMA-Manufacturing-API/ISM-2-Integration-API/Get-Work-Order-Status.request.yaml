@@ -1,0 +1,6 @@
+$kind: http-request
+name: Get Work Order Status
+method: GET
+url: '{{baseUrl}}/api/integration/work-orders/{{workOrderNo}}/status'
+order: 3000
+examples: './.resources/Get-Work-Order-Status.resources/examples'

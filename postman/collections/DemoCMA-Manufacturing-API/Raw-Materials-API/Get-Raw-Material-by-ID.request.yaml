@@ -1,0 +1,6 @@
+$kind: http-request
+name: Get Raw Material by ID
+method: GET
+url: '{{baseUrl}}/api/materials/{{materialId}}'
+order: 2000
+examples: './.resources/Get-Raw-Material-by-ID.resources/examples'

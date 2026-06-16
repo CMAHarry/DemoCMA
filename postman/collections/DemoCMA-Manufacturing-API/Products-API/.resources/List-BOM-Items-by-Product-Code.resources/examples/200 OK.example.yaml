@@ -1,0 +1,44 @@
+$kind: http-example
+name: '200 OK'
+request:
+  url: '{{baseUrl}}/api/products/{{productCode}}/bom-items'
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "message": "BOM items retrieved",
+        "data": [
+          {
+            "id": 1,
+            "product": {
+              "id": 1,
+              "productCode": "PROD-001",
+              "productName": "Assembled Frame",
+              "description": "Main structural frame assembly",
+              "active": true,
+              "createdAt": "2024-01-15T08:00:00",
+              "updatedAt": "2024-01-15T08:00:00"
+            },
+            "material": {
+              "id": 1,
+              "materialCode": "MAT-001",
+              "materialName": "Steel Rod",
+              "unitOfMeasure": "KG",
+              "active": true,
+              "createdAt": "2024-01-15T08:00:00",
+              "updatedAt": "2024-01-15T08:00:00"
+            },
+            "quantityPerUnit": 2.5000,
+            "createdAt": "2024-01-15T08:00:00",
+            "updatedAt": "2024-01-15T08:00:00"
+          }
+        ]
+      }

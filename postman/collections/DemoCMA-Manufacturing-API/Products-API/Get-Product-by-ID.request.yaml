@@ -1,0 +1,6 @@
+$kind: http-request
+name: Get Product by ID
+method: GET
+url: '{{baseUrl}}/api/products/{{productId}}'
+order: 2000
+examples: './.resources/Get-Product-by-ID.resources/examples'

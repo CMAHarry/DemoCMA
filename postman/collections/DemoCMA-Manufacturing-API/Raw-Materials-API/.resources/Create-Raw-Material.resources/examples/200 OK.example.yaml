@@ -1,0 +1,39 @@
+$kind: http-example
+name: '200 OK'
+request:
+  url: '{{baseUrl}}/api/materials'
+  method: POST
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "materialCode": "MAT-001",
+        "materialName": "Steel Rod",
+        "unitOfMeasure": "KG",
+        "active": true
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "message": "Material created",
+        "data": {
+          "id": 1,
+          "materialCode": "MAT-001",
+          "materialName": "Steel Rod",
+          "unitOfMeasure": "KG",
+          "active": true,
+          "createdAt": "2024-01-15T08:00:00",
+          "updatedAt": "2024-01-15T08:00:00"
+        }
+      }

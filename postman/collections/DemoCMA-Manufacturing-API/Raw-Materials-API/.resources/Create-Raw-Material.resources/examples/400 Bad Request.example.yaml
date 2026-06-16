@@ -1,0 +1,31 @@
+$kind: http-example
+name: '400 Bad Request'
+request:
+  url: '{{baseUrl}}/api/materials'
+  method: POST
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "materialCode": "",
+        "materialName": "",
+        "unitOfMeasure": "KG",
+        "active": true
+      }
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "Material code is required",
+        "data": null
+      }

@@ -1,0 +1,32 @@
+$kind: http-example
+name: '400 Bad Request'
+request:
+  url: '{{baseUrl}}/api/integration/work-orders'
+  method: POST
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "goodsRequestNo": "",
+        "orderNo": "ORD-2024-001",
+        "productCode": "PROD-001",
+        "quantity": 100,
+        "externalReferenceNo": "EXT-REF-001"
+      }
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "Goods request number is required",
+        "data": null
+      }

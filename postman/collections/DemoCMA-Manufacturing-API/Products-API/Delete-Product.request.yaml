@@ -1,0 +1,6 @@
+$kind: http-request
+name: Delete Product
+method: DELETE
+url: '{{baseUrl}}/api/products/{{productId}}'
+order: 5000
+examples: './.resources/Delete-Product.resources/examples'

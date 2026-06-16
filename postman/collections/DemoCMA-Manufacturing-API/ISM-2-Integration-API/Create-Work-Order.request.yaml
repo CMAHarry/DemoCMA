@@ -1,0 +1,19 @@
+$kind: http-request
+name: Create Work Order
+method: POST
+url: '{{baseUrl}}/api/integration/work-orders'
+order: 2000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "goodsRequestNo": "GR-2024-001",
+      "orderNo": "ORD-2024-001",
+      "productCode": "PROD-001",
+      "quantity": 100,
+      "externalReferenceNo": "EXT-REF-001"
+    }
+examples: './.resources/Create-Work-Order.resources/examples'

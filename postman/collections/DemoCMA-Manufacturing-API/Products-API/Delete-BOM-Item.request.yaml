@@ -1,0 +1,6 @@
+$kind: http-request
+name: Delete BOM Item
+method: DELETE
+url: '{{baseUrl}}/api/products/bom-items/{{materialId}}'
+order: 8000
+examples: './.resources/Delete-BOM-Item.resources/examples'

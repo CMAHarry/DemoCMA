@@ -1,0 +1,6 @@
+$kind: http-request
+name: List BOM Items by Product Code
+method: GET
+url: '{{baseUrl}}/api/products/{{productCode}}/bom-items'
+order: 6000
+examples: './.resources/List-BOM-Items-by-Product-Code.resources/examples'

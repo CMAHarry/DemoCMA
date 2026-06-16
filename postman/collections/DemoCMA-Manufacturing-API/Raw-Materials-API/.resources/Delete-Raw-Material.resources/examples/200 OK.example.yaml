@@ -1,0 +1,19 @@
+$kind: http-example
+name: '200 OK'
+request:
+  url: '{{baseUrl}}/api/materials/{{materialId}}'
+  method: DELETE
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "message": "Material deleted",
+        "data": null
+      }

@@ -1,0 +1,16 @@
+$kind: http-request
+name: Update Work Order Status
+method: PUT
+url: '{{baseUrl}}/api/integration/work-orders/{{workOrderNo}}/status'
+order: 4000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "status": "IN_PRODUCTION",
+      "remarks": "Production started on line 3"
+    }
+examples: './.resources/Update-Work-Order-Status.resources/examples'

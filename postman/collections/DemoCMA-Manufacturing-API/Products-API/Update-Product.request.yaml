@@ -1,0 +1,18 @@
+$kind: http-request
+name: Update Product
+method: PUT
+url: '{{baseUrl}}/api/products/{{productId}}'
+order: 4000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "productCode": "PROD-001",
+      "productName": "Assembled Frame (Updated)",
+      "description": "Updated main structural frame assembly",
+      "active": true
+    }
+examples: './.resources/Update-Product.resources/examples'

@@ -1,0 +1,18 @@
+$kind: http-request
+name: Create Raw Material
+method: POST
+url: '{{baseUrl}}/api/materials'
+order: 3000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "materialCode": "MAT-001",
+      "materialName": "Steel Rod",
+      "unitOfMeasure": "KG",
+      "active": true
+    }
+examples: './.resources/Create-Raw-Material.resources/examples'

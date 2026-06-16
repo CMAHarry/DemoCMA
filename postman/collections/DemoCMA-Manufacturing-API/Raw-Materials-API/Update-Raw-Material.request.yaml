@@ -1,0 +1,18 @@
+$kind: http-request
+name: Update Raw Material
+method: PUT
+url: '{{baseUrl}}/api/materials/{{materialId}}'
+order: 4000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "materialCode": "MAT-001",
+      "materialName": "Steel Rod (Updated)",
+      "unitOfMeasure": "KG",
+      "active": true
+    }
+examples: './.resources/Update-Raw-Material.resources/examples'
