@@ -1,0 +1,52 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: system-c-manufacturing-demo
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/system_c_manufacturing_demo?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Kuala_Lumpur
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: sa
+    password: P@ss1q2w3e
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  sql:
+    init:
+      mode: never
+  thymeleaf:
+    cache: false
+
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+logging:
+  config: classpath:log4j2.xml
+
+
+system-c:
+  integration:
+    # Demo target. Replace this with the real ISM 2 status update URL later.
+    ism2-status-update-url: http://localhost:8083/mock/ism2/order-product-status
+  jobs:
+    restock:
+      fixed-delay-ms: 30000
+    external-sync:
+      fixed-delay-ms: 30000

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">System C</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<header th:fragment="header" class="header">
+    <div class="brand">System C Manufacturing Demo</div>
+    <nav class="nav">
+        <a th:href="@{/dashboard}">Dashboard</a>
+        <a th:href="@{/materials}">Raw Materials</a>
+        <a th:href="@{/products}">Products</a>
+        <a th:href="@{/work-orders}">Work Orders</a>
+        <a th:href="@{/swagger-ui.html}" target="_blank">Swagger</a>
+        <a th:href="@{/h2-console}" target="_blank">H2 DB</a>
+    </nav>
+</header>
+<footer th:fragment="footer" class="footer">
+    System C Demo for ISM 2 Integration · API + MVC + Thymeleaf + Log4j2
+</footer>
+</body>
+</html>

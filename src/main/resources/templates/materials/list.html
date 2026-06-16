@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Raw Materials')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container">
+    <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <h1>Raw Materials</h1>
+                <p class="muted">Maintain material/component master data only. No stock count is maintained in this demo.</p>
+            </div>
+            <a class="btn primary" th:href="@{/materials/new}">Add Material</a>
+        </div>
+    </div>
+
+    <div th:if="${success}" class="alert success" th:text="${success}"></div>
+
+    <div class="card">
+        <table>
+            <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Unit</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(materials)}">
+                <td colspan="5" class="muted">No materials found.</td>
+            </tr>
+            <tr th:each="m : ${materials}">
+                <td th:text="${m.materialCode}">MAT-001</td>
+                <td th:text="${m.materialName}">Aluminium Casing</td>
+                <td th:text="${m.unitOfMeasure}">PCS</td>
+                <td th:text="${m.active ? 'Yes' : 'No'}">Yes</td>
+                <td>
+                    <div class="actions">
+                        <a class="btn small" th:href="@{/materials/{id}/edit(id=${m.id})}">Edit</a>
+                        <form th:action="@{/materials/{id}/delete(id=${m.id})}" method="post" onsubmit="return confirm('Delete this material?');">
+                            <button class="btn danger small" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

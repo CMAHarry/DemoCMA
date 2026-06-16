@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Work Order Details')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container">
+    <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <h1 th:text="${workOrder.workOrderNo}">WO-0001</h1>
+                <p class="muted">Manufacturing work order created from ISM 2 integration request.</p>
+            </div>
+            <form th:if="${workOrder.status.name() != 'COMPLETED'}" th:action="@{/work-orders/{id}/complete(id=${workOrder.workOrderNo})}" method="post">
+                <button class="btn primary" type="submit">Mark Completed</button>
+            </form>
+        </div>
+    </div>
+
+    <div th:if="${success}" class="alert success" th:text="${success}"></div>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Status</h3>
+            <span class="status" th:text="${workOrder.status}">RECEIVED</span>
+            <p class="muted" th:text="${workOrder.remarks}">Remarks</p>
+        </div>
+        <div class="card">
+            <h3>Product</h3>
+            <p><strong th:text="${workOrder.product.productCode}">PRD-001</strong></p>
+            <p th:text="${workOrder.product.productName}">Product name</p>
+        </div>
+        <div class="card">
+            <h3>Quantity</h3>
+            <div class="metric" th:text="${workOrder.quantity}">5</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Order References</h2>
+        <table>
+            <tr><th>Goods Request No</th><td th:text="${workOrder.goodsRequestNo}">GR-0001</td></tr>
+            <tr><th>Order No</th><td th:text="${workOrder.orderNo}">ORD-0001</td></tr>
+            <tr><th>External Reference</th><td th:text="${workOrder.externalReferenceNo}">ISM2-TXN-0001</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>Calculated Required Materials</h2>
+        <p class="muted">Required quantity = product work order quantity × BOM quantity per unit.</p>
+        <table>
+            <thead>
+            <tr>
+                <th>Material Code</th>
+                <th>Material Name</th>
+                <th>Unit</th>
+                <th>Required Qty</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(materials)}">
+                <td colspan="4" class="muted">No material calculation. Check if BOM items are configured for this product.</td>
+            </tr>
+            <tr th:each="m : ${materials}">
+                <td th:text="${m.material.materialCode}">MAT-001</td>
+                <td th:text="${m.material.materialName}">Material</td>
+                <td th:text="${m.material.unitOfMeasure}">PCS</td>
+                <td th:text="${m.requiredQty}">10</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

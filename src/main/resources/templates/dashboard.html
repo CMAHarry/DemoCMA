@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Dashboard')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container">
+    <div class="card">
+        <h1>System C Manufacturing Dashboard</h1>
+        <p class="muted">System C exposes REST APIs to ISM 2 and provides a simple dashboard to maintain product and raw material master data.</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <div class="metric" th:text="${productCount}">0</div>
+            <div class="muted">Products</div>
+        </div>
+        <div class="card">
+            <div class="metric" th:text="${materialCount}">0</div>
+            <div class="muted">Raw materials</div>
+        </div>
+        <div class="card">
+            <div class="metric" th:text="${workOrderCount}">0</div>
+            <div class="muted">Work orders</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Integration Position</h2>
+        <p><strong>System B ↔ ISM 2:</strong> DB-based integration. System B does not expose API for this part.</p>
+        <p><strong>ISM 2 ↔ System C:</strong> API-based integration. ISM 2 creates work orders and reads manufacturing status using Swagger REST APIs.</p>
+    </div>
+
+    <div class="card">
+        <h2>Latest Work Orders</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Work Order No</th>
+                <th>Goods Request No</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(latestWorkOrders)}">
+                <td colspan="6" class="muted">No work orders yet. Create one from Swagger: POST /api/integration/work-orders.</td>
+            </tr>
+            <tr th:each="wo : ${latestWorkOrders}">
+                <td th:text="${wo.workOrderNo}">WO-0001</td>
+                <td th:text="${wo.goodsRequestNo}">GR-0001</td>
+                <td th:text="${wo.product.productCode + ' - ' + wo.product.productName}">PRD-001</td>
+                <td th:text="${wo.quantity}">5</td>
+                <td><span class="status" th:text="${wo.status}">RECEIVED</span></td>
+                <td><a class="btn small" th:href="@{/work-orders/{id}(id=${wo.workOrderNo})}">View</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

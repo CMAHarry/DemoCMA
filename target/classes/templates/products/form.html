@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container">
+    <div class="card">
+        <h1 th:text="${pageTitle}">Product Form</h1>
+        <form th:action="${formAction}" th:object="${product}" method="post">
+            <div class="form-row">
+                <label>Product Code</label>
+                <input type="text" th:field="*{productCode}" placeholder="PRD-001">
+                <div class="error" th:if="${#fields.hasErrors('productCode')}" th:errors="*{productCode}"></div>
+            </div>
+            <div class="form-row">
+                <label>Product Name</label>
+                <input type="text" th:field="*{productName}" placeholder="Finished Product">
+                <div class="error" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></div>
+            </div>
+            <div class="form-row">
+                <label>Description</label>
+                <textarea th:field="*{description}" placeholder="Product description"></textarea>
+            </div>
+            <div class="form-row">
+                <label>
+                    <input type="checkbox" th:field="*{active}"> Active
+                </label>
+            </div>
+            <div class="actions">
+                <button class="btn primary" type="submit">Save</button>
+                <a class="btn" th:href="@{/products}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>
